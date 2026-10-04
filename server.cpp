@@ -67,7 +67,7 @@ private:
     Socket listener_;
 };
 
-static void reportError(const char* what) {
+void reportError(const char* what) {
     fprintf(stderr, "%s: Winsock error %d\n", what, WSAGetLastError());
 }
 
