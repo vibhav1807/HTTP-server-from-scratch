@@ -68,7 +68,7 @@ private:
 };
 
 void reportError(const char* what) {
-    fprintf(stderr, "%s: Winsock error %d\n", what, WSAGetLastError());
+    cerr << what << ": Winsock error " << WSAGetLastError() << "\n";
 }
 
 HttpServer::HttpServer(uint16_t port, int backlog)
@@ -204,17 +204,13 @@ static int runServer() {
 }
 
 int main() {
-    setvbuf(stdout, nullptr, _IONBF, 0);
-
+    cout << unitbuf;
     WSADATA wsaData;
     if (WSAStartup(
             MAKEWORD(2, 2),
             &wsaData
         ) != 0) {
-        fprintf(
-            stderr,
-            "WSAStartup failed\n"
-        );
+        cerr << "WSAStartup failed\n";
         return EXIT_FAILURE;
     }
 
